@@ -227,3 +227,16 @@ function furniture_delete()
         }
     });
 }
+
+function Furtniture_Clear()
+{
+    const furniture_width = document.getElementById("furniture_width")
+    furniture_width.value=""
+    const furniture_height = document.getElementById("furniture_height")
+    furniture_height.value=""
+    const furniture_name = document.getElementById("furniture_name")
+    furniture_name.value=""
+    const furniture_submit = document.getElementById("furniture_submit")
+    furniture_submit.disabled = true
+
+}
