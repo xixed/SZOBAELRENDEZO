@@ -250,7 +250,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const room_height = document.getElementById("room_height")
     const submitA= document.getElementById("room_submit")
     
-
+    const furniture_width = document.getElementById("furniture_width")
+    const furniture_height = document.getElementById("furniture_height")
+    const furniture_name = document.getElementById("furniture_name")
+    const submitB= document.getElementById("furniture_submit")
 
 
     function hasMaxOneDecimal(value) {
@@ -261,12 +264,23 @@ document.addEventListener("DOMContentLoaded", function () {
         const room_widthValid= parseFloat(room_width.value) >= 10 && hasMaxOneDecimal(room_width.value)
         const room_heightValid= parseFloat(room_height.value) >= 10 && hasMaxOneDecimal(room_height.value)
         submitA.disabled =! (room_widthValid && room_heightValid)
-    
+        const fur_widthValid= parseFloat(furniture_width.value) >= 10 && hasMaxOneDecimal(furniture_width.value) && parseFloat(furniture_width.value) <= parseFloat(room_width.value)
+        const fur_heightValid= parseFloat(furniture_height.value) >= 10 && hasMaxOneDecimal(furniture_height.value) && parseFloat(furniture_height.value) <= parseFloat(room_height.value)
+        const fur_nameValid= furniture_name.value.trim().length > 0
+        let placementPossible = true;
+        if (fur_widthValid && fur_heightValid && fur_nameValid) {
+            placementPossible = canFurnitureFit(Math.ceil(parseFloat(furniture_width.value) / 10), Math.ceil(parseFloat(furniture_height.value) / 10));
+        }
+
+        submitB.disabled =! (fur_widthValid && fur_heightValid && fur_nameValid && placementPossible)
     }
     
     room_width.addEventListener("input",validate)
     room_height.addEventListener("input",validate)
     
+    furniture_width.addEventListener("input",validate)
+    furniture_height.addEventListener("input",validate)
+    furniture_name.addEventListener("input", validate)
     
     validate()
 
