@@ -23,7 +23,28 @@
 
     <h2 id="room_title" class="room_title">Szoba:</h2>
     <div id="grid-container" class="grid-container mb-4 "></div>
-    
+
+    <div id="new-room" class="new-room">
+        <div id="furniture-container" class="furniture-container">
+            <p class="fw-bold">Add meg a bútor adatait:</p>
+            <div class="mb-2">
+                <input type="number" class="form-control" id="furniture_width" placeholder="Bútor szélessége (cm)" step="0.1" min="0">
+            </div>
+            <div class="mb-2">
+                <input type="number" class="form-control" id="furniture_height" placeholder="Bútor hosszúsága (cm)" step="0.1" min="0">
+            </div>
+            <div class="mb-3">
+                <input type="text" class="form-control" id="furniture_name" placeholder="Bútor neve">
+            </div>
+            <button id="furniture_submit" class="btn btn-primary w-100" onclick="furniture_create()" disabled>Küldés</button>
+        </div>
+        
+        <hr class="my-3">
+        
+        <p class="fw-bold mt-3">Új szoba létrehozása:</p>
+        <button class="btn btn-warning w-100" onclick="new_room()">Új szoba</button>
+    </div>
+
     <script src="main.js"></script>
 </body>
 </html>
