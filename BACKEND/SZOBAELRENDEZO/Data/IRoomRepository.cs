@@ -1,6 +1,6 @@
 ﻿using SZOBAELRENDEZO.Model;
 
-namespace szobaelrendezo.Data
+namespace SZOBAELRENDEZO.Data
 {
     public interface IRoomRepository
     {

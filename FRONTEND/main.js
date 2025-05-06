@@ -4,7 +4,7 @@ let currentRoom = null;
  
  
 async function download() {
-    const response = await fetch("http://localhost:5195/roomapi");
+    const response = await fetch("http://localhost:5249/roomapi");
     const room = await response.json();
 
     currentRoom = room;
@@ -41,3 +41,35 @@ async function download() {
 
     gridContainer.appendChild(grid);
 }
+
+function room_create()
+ {
+     let room_width = document.querySelector("#room_width").value
+     let room_height = document.querySelector("#room_height").value
+ 
+     fetch("http://localhost:5249/roomapi/room",
+         {
+             method:"POST",
+             headers:{"Content-Type": "application/json",},
+             body: JSON.stringify({
+                 Widht: room_width,
+                 Height: room_height
+             })
+         })
+         .then(resp => {
+             console.log("Response: ", resp)
+             if (resp.status === 200)
+             {
+                 download()
+                 const divcont = document.getElementById("room-container");
+                 divcont.innerHTML = "";
+                 const furdiv = document.getElementById("furniture-container");
+                 furdiv.style.display = "block"
+                 const title = document.getElementById("room_title");
+                 title.style.display = "block"
+                 const new_room = document.getElementById("new-room");
+                 new_room.style.display = "block"
+             }
+         })
+         .catch(error => console.log(error)) 
+ }
