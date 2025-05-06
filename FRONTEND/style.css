@@ -34,3 +34,32 @@ body{
     overflow: hidden;
     border: 2px solid #dee2e6;
 }
+.furniture-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: 0; 
+}
+
+.table{
+    
+    padding: 100px;
+}
+
+
+.mb-2{
+    margin-left: -18px;
+}
+.mb-3{
+    margin-left: -18px;
+}
+
+.new-room {
+    display: none;
+    background-color: chocolate;
+    padding: 10px;
+    max-width: 400px;
+    margin: 50px auto;
+    border-radius: 10px;
+}
