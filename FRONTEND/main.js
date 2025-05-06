@@ -285,3 +285,18 @@ document.addEventListener("DOMContentLoaded", function () {
     validate()
 
 });
+
+
+function new_room()
+ {
+     fetch("http://localhost:5249/roomapi/reset",  {
+         method: "Delete"
+     })
+     .then(resp => {
+         if (resp.ok) {
+             location.reload();
+         } else {
+             console.error("Nem sikerült resetelni az adatokat.");
+         }
+     });
+ }
