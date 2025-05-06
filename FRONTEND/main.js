@@ -187,3 +187,18 @@ function canPlace(x, y, w, h, gridState) {
     }
     return true;
 }
+
+function canFurnitureFit(w, h) {
+    if (!currentRoom || !currentGridState) return false;
+
+    const rowCount = currentGridState.length;
+    const colCount = currentGridState[0].length;
+
+    for (let i = 0; i <= rowCount - h; i++) {
+        for (let j = 0; j <= colCount - w; j++) {
+            if (canPlace(i, j, w, h, currentGridState)) return true;
+        }
+    }
+
+    return false;
+}
