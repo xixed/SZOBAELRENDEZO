@@ -40,6 +40,74 @@ async function download() {
     }
 
     gridContainer.appendChild(grid);
+
+    function placeFurniture(name, w, h) {
+        let triedAgain = false
+
+        function tryPlace() {
+            for (let i = 0; i <= rowCount - h; i++) {
+                for (let j = 0; j <= colCount - w; j++) {
+                    
+                    if (canPlace(i, j, w, h,currentGridState)) {
+
+                        const color = "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0");
+                        
+                        for (let di = 0; di < h; di++) {
+                            for (let dj = 0; dj < w; dj++) {
+                                gridState[i + di][j + dj] = name
+                            }
+                        }
+                        
+                        const furnitureDiv = document.createElement("div");
+                        furnitureDiv.innerText = name;
+                        furnitureDiv.style.position = "absolute";
+                        furnitureDiv.style.left = `${j * 10}px`;
+                        furnitureDiv.style.top = `${i * 10}px`;
+                        furnitureDiv.style.width = `${w * 10}px`;
+                        furnitureDiv.style.height = `${h * 10}px`;
+                        furnitureDiv.style.backgroundColor = color;
+                        furnitureDiv.style.display = "flex";
+                        furnitureDiv.style.alignItems = "center";
+                        furnitureDiv.style.justifyContent = "center";
+                        furnitureDiv.style.fontSize = `${h * 2}px`;
+                        furnitureDiv.style.fontWeight = "bold";
+                        furnitureDiv.style.color = "#000";
+                        
+                        furnitureDiv.style.boxSizing = "border-box";
+                        furnitureDiv.style.borderRadius = "2px";
+                        furnitureDiv.style.textAlign = "center";
+                        furnitureDiv.style.overflow = "hidden";
+
+                        grid.style.position = "relative";
+                        grid.appendChild(furnitureDiv);
+                        
+                        return true
+                    }
+                }
+            }
+
+
+            return false
+        }
+
+        if (tryPlace()) return true
+
+    
+        if (!triedAgain) {
+            triedAgain = true
+            if (tryPlace()) return true
+        }
+
+        console.warn(`Nincs hely a bútor elhelyezésére.`)
+        
+        return false;
+    }
+
+    room.furnitures.forEach(f => {
+        const width = Math.ceil(f.width / 10);
+        const height = Math.ceil(f.height / 10);
+        placeFurniture(f.name, width, height);
+    });
 }
 
 function room_create()
