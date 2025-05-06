@@ -99,7 +99,7 @@ async function download() {
         }
 
         console.warn(`Nincs hely a bútor elhelyezésére.`)
-        
+        furniture_delete()
         return false;
     }
 
@@ -201,4 +201,29 @@ function canFurnitureFit(w, h) {
     }
 
     return false;
+}
+
+
+function furniture_delete()
+{
+    let furniture_name = document.querySelector("#furniture_name").value
+    let furniture_width = document.querySelector("#furniture_width").value
+    let furniture_height = document.querySelector("#furniture_height").value
+
+    fetch(`http://localhost:5249/roomapi`, {
+        method: "Delete",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            Name: furniture_name,
+            Width: furniture_width,
+            Height: furniture_height
+        })
+    })
+    .then(resp => {
+        if (resp.ok) {
+            console.log("Bútor sikeresen törölve.");
+        } else {
+            console.error("Hiba történt bútor hozzáadásakor.");
+        }
+    });
 }
