@@ -1,4 +1,4 @@
-﻿namespace szobaelrendezo.Model
+﻿namespace SZOBAELRENDEZO.Model
 {
     public class Room
     {
