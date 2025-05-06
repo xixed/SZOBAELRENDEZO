@@ -169,3 +169,21 @@ function furniture_create()
         }
     });
 }
+
+
+
+function canPlace(x, y, w, h, gridState) {
+ 
+    const rowCount = gridState.length
+    const colCount = gridState[0].length
+
+    if (x + h + 1 > rowCount || y + w + 1 > colCount) return false;
+
+    for (let i = x - 1; i <= x + h; i++) {
+        for (let j = y - 1; j <= y + w; j++) {
+            if (i < 0 || j < 0 || i >= rowCount || j >= colCount) continue;
+            if (gridState[i][j] !== null) return false;
+        }
+    }
+    return true;
+}
