@@ -108,6 +108,7 @@ async function download() {
         const height = Math.ceil(f.height / 10);
         placeFurniture(f.name, width, height);
     });
+    Furtniture_Clear()
 }
 
 function room_create()
@@ -239,4 +240,34 @@ function Furtniture_Clear()
     const furniture_submit = document.getElementById("furniture_submit")
     furniture_submit.disabled = true
 
+    validate()
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+ 
+    const room_width = document.getElementById("room_width")
+    const room_height = document.getElementById("room_height")
+    const submitA= document.getElementById("room_submit")
+    
+
+
+
+    function hasMaxOneDecimal(value) {
+        return /^(\d+|\d+\.\d{1})$/.test(value);
+    }
+    
+    function validate(){
+        const room_widthValid= parseFloat(room_width.value) >= 10 && hasMaxOneDecimal(room_width.value)
+        const room_heightValid= parseFloat(room_height.value) >= 10 && hasMaxOneDecimal(room_height.value)
+        submitA.disabled =! (room_widthValid && room_heightValid)
+    
+    }
+    
+    room_width.addEventListener("input",validate)
+    room_height.addEventListener("input",validate)
+    
+    
+    validate()
+
+});
