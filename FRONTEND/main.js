@@ -72,4 +72,32 @@ function room_create()
              }
          })
          .catch(error => console.log(error)) 
- }
+}
+
+
+function furniture_create()
+{
+    let furniture_name = document.querySelector("#furniture_name").value
+    let furniture_width = document.querySelector("#furniture_width").value
+    let furniture_height = document.querySelector("#furniture_height").value
+    
+
+    fetch(`http://localhost:5249/roomapi/furniture`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            Name: furniture_name,
+            Width: furniture_width,
+            Height: furniture_height
+        })
+    })
+    .then(resp => {
+        if (resp.ok) {
+            console.log("Bútor sikeresen hozzáadva.");
+            download();
+            
+        } else {
+            console.error("Hiba történt bútor hozzáadásakor.");
+        }
+    });
+}
